@@ -245,7 +245,7 @@ Code.LANG = Code.getLang();
  * List of tab names.
  * @private
  */
-Code.TABS_ = ['blocks', 'javascript', 'php', 'python', 'dart', 'lua', 'xml'];
+Code.TABS_ = ['blocks', 'javascript', 'php', 'python', 'dart', 'pawn', 'lua', 'xml'];
 
 Code.selected = 'blocks';
 
@@ -340,6 +340,14 @@ Code.renderContent = function() {
     if (typeof prettyPrintOne == 'function') {
       code = content.textContent;
       code = prettyPrintOne(code, 'dart');
+      content.innerHTML = code;
+    }
+  } else if (content.id == 'content_pawn') {
+    code = Blockly.Pawn.workspaceToCode(Code.workspace);
+    content.textContent = code;
+    if (typeof prettyPrintOne == 'function') {
+      code = content.textContent;
+      code = prettyPrintOne(code, 'pawn');
       content.innerHTML = code;
     }
   } else if (content.id == 'content_lua') {
